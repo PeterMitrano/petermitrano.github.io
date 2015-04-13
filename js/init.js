@@ -90,7 +90,7 @@
 							else {
 								
 								//var p = Math.max(192, ($window.height() - $header_header.outerHeight()) / 2);
-								var p = 300;
+								var p = 277;
 								$header.css('padding', p + 'px 0 ' + p + 'px 0');
 							
 							}
