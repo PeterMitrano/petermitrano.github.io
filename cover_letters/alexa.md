@@ -1,8 +1,8 @@
-## Amazon Alexa Team
+# Amazon Alexa Team
 
 I have made several Alexa skills, two of which are published in the store (US & UK only)
 
-My Skills:
+### My Skills:
 
  - [CollabLab Status](https://github.com/PeterMitrano/collablab_status) *Published*
 
@@ -16,13 +16,16 @@ My Skills:
  - [My Cookbook](https://github.com/PeterMitrano/my_cookbook)
 
 
-What I'd like to do at Amazon:
-
-
-My Workflow for Alexa Projects:
+### My Workflow for Alexa Projects:
 
  - Vim, with ycm for static analysis and completion, and CtrlP for fuzzy file finding
  - nose for unit testing, coverage for code coverage checking, all run on Travis
  - Git (obviously)
  - Python 2.7.11 (matches version on Lambda)
  - AWS CLI & sketchy Makefiles for faster uploading
+
+### What I'd like to do at Amazon:
+
+As a developer, I've thought alot about the design decisions made by the Alexa team and how they impact what we can and cannot do. The one that has given me the most trouble though is as follows: If I am writing a skill, I am allowed to recieve any intent at any time. For instance, I may ask the user "do you want to create an event?" and they might say "Blue" to match some color intent I have. Of course, in this case, I must now handle the fact that the user has just spouted nonsene at me and gracefully proceed somehow. However, there are cases where ambiguity between intents could be better resolved if the skill was allow to present to the Alexa service which intents it "expected" the user to respond with. Similiar to how I imagine well defined slot types are better able to coerse speech into dates or places, we could coerse speech into intents that make more sense. For instance, one of my skills lets the user tell Alexa where they are putting some item, and ask Alexa later where they put it. For item and location, I have a "LocationIntent" with a custom slot type. When I ask "What's the item?" and they say "my backpack" I essentially get the raw text. What happens if the users says an item that is similiar to another intent I have? If they say the item is "backpack", but "backpack" is also a location for items, it might give the wrong kind of intent.
+
+To put it simply, I would like to try to design an interface where skills include a list of "expected intents" in each "ask" response, and that is used as input to the voice model to make it more likely that intents are routed correctly. This is, of course, a trade-off between faithful text-to-speech, and giving the skill what it wants to hear. However, I think a balance can be made that will increase the overall success of voice interactions with custom skills.
