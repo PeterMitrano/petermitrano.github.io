@@ -1,1 +1,1 @@
-yay my personal website
+personal website
